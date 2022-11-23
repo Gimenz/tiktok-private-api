@@ -6,8 +6,10 @@ import { UserRepository } from "../repositories";
 
 export class TikTokClient {
   proxy: string | null;
-  constructor(proxy: string | null = null) {
+  session: any;
+  constructor(proxy: string | null = null, session: string | any) {
     this.proxy = proxy;
+    this.session = session;
   }
 
   public state = new State();

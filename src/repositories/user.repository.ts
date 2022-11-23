@@ -57,6 +57,7 @@ export class UserRepository extends Repository {
       "sec-fetch-user": "?1",
       "upgrade-insecure-requests": "1",
       "user-agent": this.client.state.webUserAgent,
+      cookie: this.client.session
     };
     const response = await this.client.request.send(url, headers);
 
@@ -86,14 +87,12 @@ export class UserRepository extends Repository {
   /**
    * Get user videos
    *
-   * @param id
    * @param secUid
    * @param count
    * @param cursor
    * @returns
    */
   public async videos(
-    id: number,
     secUid: string,
     count: number,
     cursor: number
@@ -199,6 +198,7 @@ export class UserRepository extends Repository {
       ...this.client.state.defaultApiHeaders,
       "user-agent": this.client.state.mobileUserAgent,
       "x-tt-params": xTTParams,
+      cookie: this.client.session
     });
 
     const responseBody = JSON.parse(response.body);
